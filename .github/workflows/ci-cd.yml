@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Demo
 
 on:
   push:
@@ -17,5 +17,3 @@ on:
       with:
         context: .
         push: false
-        tags: devops-demo:latest
-        cache-from: type=gha
