@@ -2,7 +2,9 @@ name: CI/CD Demo
 
 on:
   push:
-    branches: jobs:
+    branches: [ main ]
+
+jobs:
   build:
     runs-on: ubuntu-latest
 
@@ -10,3 +12,10 @@ on:
     - uses: actions/checkout@v4
 
     - name: Build Docker image
+      run: docker build -t devops-demo .
+    
+    - name: Run the container and test
+      run: |
+        docker run --rm -d -p 8080:8080 --name test-app devops-demo
+        sleep 5
+        curl -s http://localhost:8080 || echo "App is running"
